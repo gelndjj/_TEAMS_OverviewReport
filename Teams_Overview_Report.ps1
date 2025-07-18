@@ -99,5 +99,5 @@ $report | Export-Csv -Path $outFile -Delimiter ';' -NoTypeInformation -Encoding 
 Disconnect-MgGraph
 
 $duration = (Get-Date) - $start
-Write-Host "`n✅ Batched Teams overview saved to $outFile" -Foreground Green
-Write-Host "⏱️ Duration: $($duration.TotalSeconds) seconds" -Foreground Yellow
+Write-Host "Batched Teams overview saved to $outFile" -Foreground Green
+Write-Host "Duration: $($duration.TotalSeconds) seconds" -Foreground Yellow
