@@ -104,4 +104,51 @@ Admin ownership and team visibility checks
 No tenant-specific hardcoding.
 Authentication uses interactive sign-in via Connect-MgGraph.
 
+---
 
+## ☁️ Azure Automation Runbook
+
+This report can be scheduled to run automatically using Azure Automation with a Managed Identity and have the resulting CSV uploaded to SharePoint.
+
+
+## 🔧 Setup Instructions
+
+1. Required PowerShell Modules in Azure Automation:
+
+Microsoft.Graph
+PnP.PowerShell
+
+2. Required Microsoft Graph Permissions (Application):
+
+Group.Read.All
+Team.ReadBasic.All
+Channel.ReadBasic.All
+ChannelMember.Read.All
+TeamMember.Read.All
+User.Read.All
+
+3. SharePoint Access:
+Assign the Managed Identity as a Contributor on the SharePoint document library where the report will be saved.
+
+---
+
+## 🛠️ Runbook Features
+
+Authenticates using Managed Identity (no credentials needed)
+Retrieves metadata and settings for all Microsoft Teams
+Uses batched Microsoft Graph requests to minimize throttling
+Generates a detailed .csv file:
+```plain
+Teams_Overview_Report.csv
+```
+Uploads the file to a specified SharePoint document library
+
+---
+
+## ✏️ Customization
+Update the following lines in the runbook script to reflect your SharePoint environment:
+
+```pwsh
+$sharePointSiteUrl = "https://<YourTenant>.sharepoint.com/sites/<YourSiteName>"
+$sharePointLibraryPath = "Shared Documents/Reporting/Teams"
+```
